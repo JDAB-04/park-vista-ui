@@ -1,5 +1,5 @@
 
-import { Calendar, Car, Clock, Map, Parking, ParkingCircle } from "lucide-react";
+import { Calendar, Car, Clock, Map, CircleParking, ParkingCircle } from "lucide-react";
 import {
   Sidebar as SidebarComponent,
   SidebarContent,
@@ -39,7 +39,7 @@ const menuItems = [
   },
   {
     title: "Parking Rates",
-    icon: Parking,
+    icon: CircleParking,
     url: "/rates",
   },
 ];

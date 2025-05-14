@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { Car, Clock, MapPin, Parking } from "lucide-react";
+import { Car, Clock, MapPin, CircleParking } from "lucide-react";
 import StatCard from "../common/StatCard";
 
 const ParkingOverview = () => {
@@ -9,7 +9,7 @@ const ParkingOverview = () => {
       <StatCard
         title="Total Spaces"
         value={120}
-        icon={Parking}
+        icon={CircleParking}
         iconColor="text-blue-600"
       />
       <StatCard
