@@ -1,22 +1,75 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { CarFront, LogOut } from "lucide-react";
 import DashboardCard from "../common/DashboardCard";
+import { useParkingContext } from "@/contexts/ParkingContext";
+import { useToast } from "@/hooks/use-toast";
 
 const VehicleEntryExit = () => {
   const [plate, setPlate] = useState("");
-  const [vehicleType, setVehicleType] = useState("car");
+  const [vehicleType, setVehicleType] = useState<"car" | "truck">("car");
   const [action, setAction] = useState("entry");
+  const { registerVehicleEntry, registerVehicleExit, vehicles } = useParkingContext();
+  const { toast } = useToast();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({ plate, vehicleType, action, timestamp: new Date() });
-    // Here you would handle the vehicle entry or exit
-    setPlate("");
+    
+    if (!plate) {
+      toast({
+        title: "Error",
+        description: "La placa es obligatoria",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    try {
+      if (action === "entry") {
+        // Check if vehicle is already parked
+        const existingVehicle = vehicles.find(
+          (v) => v.plate.toLowerCase() === plate.toLowerCase() && v.status === "parked"
+        );
+        
+        if (existingVehicle) {
+          toast({
+            title: "Error",
+            description: "Este vehículo ya está registrado en el parqueadero",
+            variant: "destructive"
+          });
+          return;
+        }
+        
+        await registerVehicleEntry({ 
+          plate: plate.toUpperCase(), 
+          type: vehicleType 
+        });
+      } else {
+        // Check if vehicle exists before exit
+        const existingVehicle = vehicles.find(
+          (v) => v.plate.toLowerCase() === plate.toLowerCase() && v.status === "parked"
+        );
+        
+        if (!existingVehicle) {
+          toast({
+            title: "Error",
+            description: "Este vehículo no está registrado en el parqueadero",
+            variant: "destructive"
+          });
+          return;
+        }
+        
+        await registerVehicleExit(plate.toUpperCase());
+      }
+      
+      // Reset form after successful submission
+      setPlate("");
+    } catch (error) {
+      console.error("Error in vehicle registration:", error);
+    }
   };
 
   return (

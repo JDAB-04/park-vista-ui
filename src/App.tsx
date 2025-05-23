@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
+import { ParkingProvider } from "./contexts/ParkingContext";
 import Index from "./pages/Index";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
@@ -39,7 +40,9 @@ const AppRoutes = () => {
         path="/" 
         element={
           <ProtectedRoute>
-            <Index />
+            <ParkingProvider>
+              <Index />
+            </ParkingProvider>
           </ProtectedRoute>
         } 
       />
