@@ -3,7 +3,6 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import Navbar from "@/components/layout/Navbar";
 import Sidebar from "@/components/layout/Sidebar";
 import ParkingOverview from "@/components/dashboard/ParkingOverview";
-import RecentActivity from "@/components/dashboard/RecentActivity";
 import ParkingGrid from "@/components/parking/ParkingGrid";
 import { Button } from "@/components/ui/button";
 import { CarFront, Plus } from "lucide-react";
@@ -16,7 +15,7 @@ const Index = () => {
 
   return (
     <SidebarProvider>
-      <div className="min-h-screen bg-gray-50 flex w-full">
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex w-full">
         <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
         <div className="flex-1 flex flex-col">
           <Navbar />
@@ -25,9 +24,11 @@ const Index = () => {
               {activeTab === "dashboard" && (
                 <>
                   <div className="flex justify-between items-center mb-6">
-                    <h1 className="text-2xl font-bold">Dashboard</h1>
+                    <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+                      Dashboard
+                    </h1>
                     <Button 
-                      className="bg-primary hover:bg-primary/90"
+                      className="tech-gradient hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300"
                       onClick={() => setActiveTab("vehicle-entry")}
                     >
                       <Plus className="h-4 w-4 mr-2" />
@@ -45,7 +46,9 @@ const Index = () => {
               {activeTab === "vehicle-entry" && (
                 <>
                   <div className="flex items-center mb-6">
-                    <h1 className="text-2xl font-bold">Ingreso y Salida de Vehículos</h1>
+                    <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+                      Ingreso y Salida de Vehículos
+                    </h1>
                   </div>
                   <VehicleEntryExit />
                 </>
@@ -54,7 +57,9 @@ const Index = () => {
               {activeTab === "vehicle-list" && (
                 <>
                   <div className="flex items-center mb-6">
-                    <h1 className="text-2xl font-bold">Lista de Vehículos</h1>
+                    <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+                      Lista de Vehículos
+                    </h1>
                   </div>
                   <VehicleList />
                 </>
