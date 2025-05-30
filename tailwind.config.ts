@@ -30,13 +30,6 @@ export default {
 					occupied: '#EF4444',
 					reserved: '#F59E0B',
 				},
-				tech: {
-					primary: '#3b82f6',
-					secondary: '#1e293b',
-					accent: '#0f172a',
-					blue: '#60a5fa',
-					dark: '#0f172a',
-				},
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))'
@@ -101,17 +94,12 @@ export default {
 				'pulse-slow': {
 					'0%, 100%': { opacity: '1' },
 					'50%': { opacity: '0.5' },
-				},
-				'glow': {
-					'0%, 100%': { boxShadow: '0 0 20px rgba(59, 130, 246, 0.5)' },
-					'50%': { boxShadow: '0 0 30px rgba(59, 130, 246, 0.8)' },
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'pulse-slow': 'pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-				'glow': 'glow 2s ease-in-out infinite alternate',
 			}
 		}
 	},
